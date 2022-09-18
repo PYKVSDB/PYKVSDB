@@ -1,9 +1,11 @@
 import pickle
+from pathlib import Path
 _data = {}
 def load(path: str):
     global _data
-    with open(path, "rb") as f:
-        _data = pickle.load(f)
+    if Path(path).is_file():
+        with open(path, "rb") as f:
+            _data = pickle.load(f)
 
 def save(path: str):
     with open(path, "wb") as f:
